@@ -5,23 +5,3 @@
 class nagios::params {
   $nagios_service_name  = 'nagios'
 }
-
-# nagios::params::cgi for cgi.cfg
-#
-class nagios::params::cgi inherits nagios::params {
-  content             => template('nagios/cgi.cfg.erb')
-
-  $nagios_etc_path    = '/etc/nagios'
-  $nagios_share_path  = '/var/nagios/share'
-
-}
-
-# nagios::params::cfg for nagios.cfg
-#
-class nagios::params::cfg inherits nagios::params::cgi {
-  content             => template('nagios/nagios.cfg.erb')
-
-  $nagios_log_file    = '/var/log/nagios.log'
-  $nagios_obj_path    = '/etc/nagios/objects'
-  $nagios_var_path    = '/etc/nagios/var'
-}
